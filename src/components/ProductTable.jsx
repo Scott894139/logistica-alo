@@ -33,11 +33,13 @@ export const ProductTable = ({
         <table className="min-w-full divide-y divide-slate-200">
           <thead className="bg-slate-50">
             <tr>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Código/Serie</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Ubica</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Código</th>
               <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Descripción</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Ubicación</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Marca/Medida</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Vencimiento</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Marca Proveedor</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Series</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Medidas (mm.)</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Fecha Vencimiento</th>
               <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Centro Médico</th>
               <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Estado</th>
               <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Stock</th>
@@ -47,9 +49,11 @@ export const ProductTable = ({
           <tbody className="bg-white divide-y divide-slate-200">
             {products.map((product) => (
               <tr key={product.id} className="hover:bg-slate-50 transition-colors">
-                <td className="px-4 py-3 whitespace-nowrap">
-                  <div className="text-sm font-medium text-slate-900">{product.codigo}</div>
-                  <div className="text-xs text-slate-500">{product.serie || 'Sin serie'}</div>
+                <td className="px-4 py-3 whitespace-nowrap text-sm text-slate-500">
+                  {product.ubicacion}
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-slate-900">
+                  {product.codigo}
                 </td>
                 <td className="px-4 py-3">
                   <div className="text-sm text-slate-900 truncate max-w-[150px]" title={product.descripcion}>
@@ -57,11 +61,13 @@ export const ProductTable = ({
                   </div>
                 </td>
                 <td className="px-4 py-3 whitespace-nowrap text-sm text-slate-500">
-                  {product.ubicacion}
+                  {product.marca_proveedor || '-'}
                 </td>
-                <td className="px-4 py-3 whitespace-nowrap">
-                  <div className="text-sm text-slate-900">{product.marca_proveedor || '-'}</div>
-                  <div className="text-xs text-slate-500">{product.medidas || '-'}</div>
+                <td className="px-4 py-3 whitespace-nowrap text-sm text-slate-500">
+                  {product.serie || '-'}
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap text-sm text-slate-500">
+                  {product.medidas || '-'}
                 </td>
                 <td className="px-4 py-3 whitespace-nowrap text-sm text-slate-500">
                   {formatDate(product.fecha_vencimiento)}

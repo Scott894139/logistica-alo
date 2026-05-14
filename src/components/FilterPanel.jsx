@@ -13,6 +13,17 @@ export const FilterPanel = ({ filters, setFilters, centers, onClear }) => {
     <div className="bg-white p-4 rounded-lg shadow-sm border border-slate-200 mb-6 transition-all">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
         <div>
+          <label className="block text-xs font-medium text-slate-700 mb-1">Ubicación</label>
+          <input
+            type="text"
+            name="ubicacion"
+            value={filters.ubicacion}
+            onChange={handleChange}
+            className="w-full rounded-md border border-slate-300 px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
+          />
+        </div>
+
+        <div>
           <label className="block text-xs font-medium text-slate-700 mb-1">Buscar (Código, Desc, Serie, Marca)</label>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -27,17 +38,6 @@ export const FilterPanel = ({ filters, setFilters, centers, onClear }) => {
               placeholder="Término de búsqueda..."
             />
           </div>
-        </div>
-
-        <div>
-          <label className="block text-xs font-medium text-slate-700 mb-1">Ubicación</label>
-          <input
-            type="text"
-            name="ubicacion"
-            value={filters.ubicacion}
-            onChange={handleChange}
-            className="w-full rounded-md border border-slate-300 px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
-          />
         </div>
 
         <div>

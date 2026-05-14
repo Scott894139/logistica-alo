@@ -79,12 +79,12 @@ export const ProductFormModal = ({ isOpen, onClose, onSave, product, centers }) 
           <form id="productForm" onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Código *</label>
-                <input required type="text" name="codigo" value={formData.codigo} onChange={handleChange} className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-shadow" />
-              </div>
-              <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Ubicación *</label>
                 <input required type="text" name="ubicacion" value={formData.ubicacion} onChange={handleChange} className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-shadow" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Código *</label>
+                <input required type="text" name="codigo" value={formData.codigo} onChange={handleChange} className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-shadow" />
               </div>
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-slate-700 mb-1">Descripción *</label>
@@ -95,11 +95,11 @@ export const ProductFormModal = ({ isOpen, onClose, onSave, product, centers }) 
                 <input type="text" name="marca_proveedor" value={formData.marca_proveedor} onChange={handleChange} className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-shadow" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Número de serie</label>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Número de serie (Series)</label>
                 <input type="text" name="serie" value={formData.serie} onChange={handleChange} className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-shadow" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Medidas</label>
+                <label className="block text-sm font-medium text-slate-700 mb-1">Medidas (mm.)</label>
                 <input type="text" name="medidas" value={formData.medidas} onChange={handleChange} className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-shadow" />
               </div>
               <div>
