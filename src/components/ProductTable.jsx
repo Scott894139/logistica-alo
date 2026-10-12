@@ -33,53 +33,59 @@ export const ProductTable = ({
         <table className="min-w-full divide-y divide-slate-200">
           <thead className="bg-slate-50">
             <tr>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Ubicación</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Código</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Descripción</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Marca Proveedor</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Series</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Medidas (mm.)</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Fecha Vencimiento</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Centro Médico</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Estado</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Stock</th>
-              <th className="px-4 py-3 text-right text-xs font-medium text-slate-500 uppercase tracking-wider">Acciones</th>
+              <th className="px-3 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider whitespace-nowrap">Ubicación</th>
+              <th className="px-3 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider whitespace-nowrap">Código</th>
+              <th className="px-3 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider whitespace-nowrap">Descripción</th>
+              <th className="px-3 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider whitespace-nowrap">Marca Proveedor</th>
+              <th className="px-3 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider whitespace-nowrap">Series</th>
+              <th className="px-3 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider whitespace-nowrap">Medidas (mm.)</th>
+              <th className="px-3 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider whitespace-nowrap">Fecha Vencimiento</th>
+              <th className="px-3 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider whitespace-nowrap">Centro Médico</th>
+              <th className="px-3 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider whitespace-nowrap">Estado</th>
+              <th className="px-3 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider whitespace-nowrap">Stock</th>
+              <th className="px-3 py-3 text-right text-xs font-medium text-slate-500 uppercase tracking-wider whitespace-nowrap">Acciones</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-slate-200">
             {products.map((product) => (
               <tr key={product.id} className="hover:bg-slate-50 transition-colors">
-                <td className="px-4 py-3 whitespace-nowrap text-sm text-slate-500">
+                <td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-slate-700">
                   {product.ubicacion}
                 </td>
-                <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-slate-900">
+                <td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-slate-900">
                   {product.codigo}
                 </td>
-                <td className="px-4 py-3">
-                  <div className="text-sm text-slate-900 truncate max-w-[150px]" title={product.descripcion}>
+                <td className="px-3 py-3">
+                  <div className="text-sm text-slate-900 truncate max-w-[160px]" title={product.descripcion}>
                     {product.descripcion}
                   </div>
                 </td>
-                <td className="px-4 py-3 whitespace-nowrap text-sm text-slate-500">
-                  {product.marca_proveedor || '-'}
+                <td className="px-3 py-3 whitespace-nowrap text-sm text-slate-500">
+                  <div className="truncate max-w-[130px]" title={product.marca_proveedor || '-'}>
+                    {product.marca_proveedor || '-'}
+                  </div>
                 </td>
-                <td className="px-4 py-3 whitespace-nowrap text-sm text-slate-500">
+                <td className="px-3 py-3 whitespace-nowrap text-sm text-slate-500">
                   {product.serie || '-'}
                 </td>
-                <td className="px-4 py-3 whitespace-nowrap text-sm text-slate-500">
-                  {product.medidas || '-'}
+                <td className="px-3 py-3 whitespace-nowrap text-sm text-slate-500">
+                  <div className="truncate max-w-[150px]" title={product.medidas || '-'}>
+                    {product.medidas || '-'}
+                  </div>
                 </td>
-                <td className="px-4 py-3 whitespace-nowrap text-sm text-slate-500">
+                <td className="px-3 py-3 whitespace-nowrap text-sm text-slate-500">
                   {formatDate(product.fecha_vencimiento)}
                 </td>
-                <td className="px-4 py-3 whitespace-nowrap text-sm text-slate-500">
-                  {getCenterName(product.centro_medico_id)}
+                <td className="px-3 py-3 whitespace-nowrap text-sm text-slate-500">
+                  <div className="truncate max-w-[150px]" title={getCenterName(product.centro_medico_id)}>
+                    {getCenterName(product.centro_medico_id)}
+                  </div>
                 </td>
-                <td className="px-4 py-3 whitespace-nowrap">
+                <td className="px-3 py-3 whitespace-nowrap">
                   <StatusBadge status={product.estado} />
                 </td>
-                <td className="px-4 py-3 whitespace-nowrap">
-                  <div className="flex items-center gap-2">
+                <td className="px-3 py-3 whitespace-nowrap">
+                  <div className="flex items-center gap-1.5">
                     <span className={`text-sm font-medium ${product.stock <= 5 && product.stock > 0 ? 'text-orange-600' : product.stock === 0 ? 'text-red-600' : 'text-slate-900'}`}>
                       {product.stock}
                     </span>
@@ -91,7 +97,7 @@ export const ProductTable = ({
                     )}
                   </div>
                 </td>
-                <td className="px-4 py-3 whitespace-nowrap text-right text-sm font-medium">
+                <td className="px-3 py-3 whitespace-nowrap text-right text-sm font-medium">
                   <div className="flex items-center justify-end gap-2">
                     <button onClick={() => onEdit(product)} className="text-blue-600 hover:text-blue-900" title="Editar">
                       <Edit2 className="w-4 h-4" />

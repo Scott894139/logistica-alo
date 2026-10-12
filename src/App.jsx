@@ -10,7 +10,7 @@ function App() {
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col">
       {/* Global Navigation Topbar */}
       <nav className="bg-slate-900 text-white shadow-lg z-20 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center sm:justify-start h-12 gap-2">
             <button 
               onClick={() => setCurrentView('inventory')}
