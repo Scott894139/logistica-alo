@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import * as XLSX from 'xlsx';
 import { supabase } from '../services/supabaseClient';
-import { determineStatus, getDaysDifference } from '../utils/dateUtils';
+import { determineStatus, getDaysDifference, formatDate } from '../utils/dateUtils';
 import { Header } from '../components/Header';
 import { FilterPanel } from '../components/FilterPanel';
 import { ProductTable } from '../components/ProductTable';
@@ -317,12 +318,66 @@ export const InventoryPage = () => {
     });
   };
 
+  const handleExportExcel = () => {
+    if (filteredProducts.length === 0) {
+      alert('No hay productos para exportar con los filtros actuales.');
+      return;
+    }
+
+    const STATUS_LABELS = {
+      EN_BODEGA: 'En Bodega',
+      ASIGNADO: 'Asignado',
+      SIN_STOCK: 'Sin Stock',
+      POR_VENCER: 'Por Vencer',
+      VENCIDO: 'Vencido'
+    };
+
+    const rows = filteredProducts.map((p) => {
+      const center = centers.find((c) => c.id === p.centro_medico_id);
+      return {
+        'UBICACIÓN': p.ubicacion || '',
+        'CODIGO': p.codigo || '',
+        'DESCRIPCION': p.descripcion || '',
+        'MARCA PROVEEDOR': p.marca_proveedor || '',
+        'SERIES': p.serie || '',
+        'MEDIDAS (mm.)': p.medidas || '',
+        'FECHA VENCIMIENTO': formatDate(p.fecha_vencimiento),
+        'CENTRO MÉDICO': center ? center.nombre : '-',
+        'ESTADO': STATUS_LABELS[p.estado] || p.estado || '',
+        'STOCK': p.stock ?? 0,
+        'OBSERVACIÓN': p.observacion || ''
+      };
+    });
+
+    const worksheet = XLSX.utils.json_to_sheet(rows);
+    worksheet['!cols'] = [
+      { wch: 15 }, // UBICACIÓN
+      { wch: 14 }, // CODIGO
+      { wch: 30 }, // DESCRIPCION
+      { wch: 20 }, // MARCA PROVEEDOR
+      { wch: 18 }, // SERIES
+      { wch: 22 }, // MEDIDAS (mm.)
+      { wch: 18 }, // FECHA VENCIMIENTO
+      { wch: 24 }, // CENTRO MÉDICO
+      { wch: 14 }, // ESTADO
+      { wch: 10 }, // STOCK
+      { wch: 30 }  // OBSERVACIÓN
+    ];
+
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Inventario');
+
+    const dateStr = new Date().toISOString().slice(0, 10);
+    XLSX.writeFile(workbook, `inventario_logistica_${dateStr}.xlsx`);
+  };
+
   return (
     <div className="flex-1 bg-slate-50 font-sans text-slate-800">
       <Header 
         onAddProduct={() => { setSelectedProduct(null); setIsFormOpen(true); }}
         onToggleFilters={() => setShowFilters(!showFilters)}
         showFilters={showFilters}
+        onExportExcel={handleExportExcel}
       />
 
       <main className="max-w-[1600px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">

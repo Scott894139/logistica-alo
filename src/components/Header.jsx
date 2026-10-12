@@ -1,6 +1,6 @@
-import { PackagePlus, Filter } from 'lucide-react';
+import { PackagePlus, Filter, Download } from 'lucide-react';
 
-export const Header = ({ onAddProduct, onToggleFilters, showFilters }) => {
+export const Header = ({ onAddProduct, onToggleFilters, showFilters, onExportExcel }) => {
   return (
     <header className="bg-white border-b border-slate-200 sticky top-0 z-10">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,6 +24,14 @@ export const Header = ({ onAddProduct, onToggleFilters, showFilters }) => {
             >
               <Filter className="w-4 h-4" />
               {showFilters ? 'Ocultar Filtros' : 'Mostrar Filtros'}
+            </button>
+            <button
+              onClick={onExportExcel}
+              className="flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-md shadow-sm transition-colors"
+              title="Exportar productos mostrados a Excel"
+            >
+              <Download className="w-4 h-4" />
+              Exportar Excel
             </button>
             <button
               onClick={onAddProduct}
